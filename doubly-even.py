@@ -39,11 +39,20 @@ def make_mask(n):
     return s
 
 def construct_doubly_even_magic_square(n):
+    '''
+    This method was picked from the following WikiHow page on October 17, 2020.
+
+    https://www.wikihow.com/Solve-a-Magic-Square#Solving-a-Doubly-Even-Magic-Square
+    '''
     assert_divisibility(n, 4)
+    # To fill counting forward
     s_forward = fill_square(n)
+    # To fill counting backwards
     s_backward = fill_square(n, forward=False)
+    # To decide when to fill forward and when backwards
     mask = make_mask(n)
     magic_s = np.zeros((n, n))
+    # The actual filling in according to the masking
     magic_s = np.where(mask, s_forward, s_backward)
     return magic_s
 
