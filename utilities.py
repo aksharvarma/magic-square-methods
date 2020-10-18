@@ -1,8 +1,11 @@
 import numpy as np
 from itertools import product
 
-def assert_divisibility(n, d):
+def assert_divisibility(n, d, check_indivisibility=False):
     assert n%d == 0, "Divisibility of {:d} by {:d} failed".format(n, d)
+
+def assert_indivisibility(n, d):
+    assert n%d != 0, "Divisibility of {:d} by {:d} failed".format(n, d)
 
 def calculate_required_sum(n):
     return n*(n**2 + 1)//2
