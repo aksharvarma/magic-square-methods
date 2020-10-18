@@ -11,7 +11,7 @@ def construct_odd_magic_square(n):
     Reference: https://en.wikipedia.org/wiki/Siamese_method
     '''
     assert_indivisibility(n, 2)
-    magic_s = np.zeros((n, n))
+    magic_s = np.zeros((n, n), dtype=int)
     # Start from 1
     current_num = 1
     # First cell to fill is the middle one on the top row.
@@ -31,5 +31,6 @@ def construct_odd_magic_square(n):
 n = 5
 print("\nFor an {:d} x {:d} magic square, the required sum is: {:d}\n".format(n, n, calculate_required_sum(n)))
 magic_s = construct_odd_magic_square(n)
+set_better_np_printoptions(n)
 print(magic_s)
 verify_magic_square(magic_s)

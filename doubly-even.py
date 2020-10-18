@@ -51,7 +51,7 @@ def construct_doubly_even_magic_square(n):
     s_backward = fill_square(n, forward=False)
     # To decide when to fill forward and when backwards
     mask = make_mask(n)
-    magic_s = np.zeros((n, n))
+    magic_s = np.zeros((n, n), dtype=int)
     # The actual filling in according to the masking
     magic_s = np.where(mask, s_forward, s_backward)
     return magic_s
@@ -59,5 +59,6 @@ def construct_doubly_even_magic_square(n):
 n = 8
 print("\nFor an {:d} x {:d} magic square, the required sum is: {:d}\n".format(n, n, calculate_required_sum(n)))
 magic_s = construct_doubly_even_magic_square(n)
+set_better_np_printoptions(n)
 print(magic_s)
 verify_magic_square(magic_s)
