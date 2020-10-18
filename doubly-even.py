@@ -22,7 +22,7 @@ def get_submask_indices(row_low, row_high, col_low, col_high):
 
 def make_mask(n):
     assert_divisibility(n, 4)
-    k = n//4
+    k = get_k(n)
     s = np.zeros((n, n))
 
     # top left: i<k, j <k

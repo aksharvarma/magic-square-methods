@@ -15,7 +15,7 @@ def construct_odd_magic_square(n):
     # Start from 1
     current_num = 1
     # First cell to fill is the middle one on the top row.
-    i, j = 0, (n-1)//2
+    i, j = 0, get_k(n)
     while current_num <= n**2:
         magic_s[i, j] = current_num
         # Move up and right

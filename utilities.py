@@ -15,6 +15,14 @@ def assert_indivisibility(n, d):
 def calculate_required_sum(n):
     return n*(n**2 + 1)//2
 
+def get_k(n):
+    if is_divisible(n, 4):
+        return n//4
+    elif is_divisible(n, 2):
+        return (n-2)//4
+    else:
+        return (n-1)//2
+
 def verify_magic_square(magic_s, print_message=True, print_verbose=False):
     n = magic_s.shape[0]
     assert n==magic_s.shape[1], "Input is not a square"
