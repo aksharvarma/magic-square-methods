@@ -9,7 +9,7 @@ def assert_divisibility(n, d, check_indivisibility=False):
     return True
 
 def assert_indivisibility(n, d):
-    assert not is_divisible(n, d), "Divisibility of {:d} by {:d} failed".format(n, d)
+    assert not is_divisible(n, d), "{:d} should not be divisible by {:d} failed".format(n, d)
     return True
 
 def calculate_required_sum(n):
