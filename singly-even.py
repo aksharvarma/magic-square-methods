@@ -1,6 +1,6 @@
 import numpy as np
 from itertools import product
-from utilities import *
+import utilities as U
 from enum import Enum
 
 class Block(Enum):
@@ -51,10 +51,10 @@ def construct_singly_even_magic_square(n, print_LUX=True):
 
     Reference: https://en.wikipedia.org/wiki/Conway%27s_LUX_method_for_magic_squares
     '''
-    assert_divisibility(n, 2)
-    assert_indivisibility(n, 4)
+    U.assert_divisibility(n, 2)
+    U.assert_indivisibility(n, 4)
     magic_s = np.zeros((n, n), dtype=np.int)
-    k = get_k(n)
+    k = U.get_k(n)
     LUX = make_LUX_square(k)
     print("The LUX square constructed is as follows:\n", LUX, "\n")
     LUX_size = LUX.shape[0]
@@ -78,8 +78,8 @@ def construct_singly_even_magic_square(n, print_LUX=True):
 
 
 n = 6
-print("\nFor an {:d} x {:d} magic square, the required sum is: {:d}\n".format(n, n, calculate_required_sum(n)))
+print("\nFor an {:d} x {:d} magic square, the required sum is: {:d}\n".format(n, n, U.calculate_required_sum(n)))
 magic_s = construct_singly_even_magic_square(n)
-set_better_np_printoptions(n)
+U.set_better_np_printoptions(n)
 print(magic_s)
-verify_magic_square(magic_s)
+U.verify_magic_square(magic_s)

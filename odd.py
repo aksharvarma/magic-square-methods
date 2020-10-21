@@ -1,6 +1,6 @@
 import numpy as np
 from itertools import product
-from utilities import *
+import utilities as U
 
 def construct_odd_magic_square(n):
     '''
@@ -10,12 +10,12 @@ def construct_odd_magic_square(n):
 
     Reference: https://en.wikipedia.org/wiki/Siamese_method
     '''
-    assert_indivisibility(n, 2)
+    U.assert_indivisibility(n, 2)
     magic_s = np.zeros((n, n), dtype=int)
     # Start from 1
     current_num = 1
     # First cell to fill is the middle one on the top row.
-    i, j = 0, get_k(n)
+    i, j = 0, U.get_k(n)
     while current_num <= n**2:
         magic_s[i, j] = current_num
         # Move up and right
@@ -29,8 +29,8 @@ def construct_odd_magic_square(n):
     return magic_s
 
 n = 5
-print("\nFor an {:d} x {:d} magic square, the required sum is: {:d}\n".format(n, n, calculate_required_sum(n)))
+print("\nFor an {:d} x {:d} magic square, the required sum is: {:d}\n".format(n, n, U.calculate_required_sum(n)))
 magic_s = construct_odd_magic_square(n)
-set_better_np_printoptions(n)
+U.set_better_np_printoptions(n)
 print(magic_s)
-verify_magic_square(magic_s)
+U.verify_magic_square(magic_s)

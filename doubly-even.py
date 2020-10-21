@@ -1,6 +1,6 @@
 import numpy as np
 from itertools import product
-from utilities import *
+import utilities as U
 
 def fill_square(n, forward=True):
     sqr = np.arange(n**2) + 1
@@ -21,8 +21,8 @@ def get_submask_indices(row_low, row_high, col_low, col_high):
     return rows, cols
 
 def make_mask(n):
-    assert_divisibility(n, 4)
-    k = get_k(n)
+    U.assert_divisibility(n, 4)
+    k = U.get_k(n)
     s = np.zeros((n, n))
 
     # top left: i<k, j <k
@@ -44,7 +44,7 @@ def construct_doubly_even_magic_square(n):
 
     https://www.wikihow.com/Solve-a-Magic-Square#Solving-a-Doubly-Even-Magic-Square
     '''
-    assert_divisibility(n, 4)
+    U.assert_divisibility(n, 4)
     # To fill counting forward
     s_forward = fill_square(n)
     # To fill counting backwards
@@ -57,8 +57,8 @@ def construct_doubly_even_magic_square(n):
     return magic_s
 
 n = 8
-print("\nFor an {:d} x {:d} magic square, the required sum is: {:d}\n".format(n, n, calculate_required_sum(n)))
+print("\nFor an {:d} x {:d} magic square, the required sum is: {:d}\n".format(n, n, U.calculate_required_sum(n)))
 magic_s = construct_doubly_even_magic_square(n)
-set_better_np_printoptions(n)
+U.set_better_np_printoptions(n)
 print(magic_s)
-verify_magic_square(magic_s)
+U.verify_magic_square(magic_s)
