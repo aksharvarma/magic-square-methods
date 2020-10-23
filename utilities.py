@@ -1,5 +1,7 @@
 import numpy as np
 from itertools import product
+import curses
+from functools import partial
 
 def is_divisible(n, d):
     return n%d == 0
@@ -29,10 +31,17 @@ def get_display_size(n):
 def get_display_format_string(n):
     return "{:"+str(get_display_size(n))+"d}"
 
+def np_int_formatter(n, x):
+    if x == 0:
+        return " "*(get_display_size(n)-1)+"_"
+    else:
+        return get_display_format_string(n).format(x)
+
 def set_better_np_printoptions(n):
     display_size = get_display_size(n)
     display_format_string = get_display_format_string(n)
-    np.set_printoptions(formatter={"int": lambda x: display_format_string.format(x)})
+    formatter = partial(np_int_formatter, n)
+    np.set_printoptions(formatter={"int": formatter})
 
 def verify_magic_square(magic_s, print_message=True, print_verbose=False):
     n = magic_s.shape[0]
