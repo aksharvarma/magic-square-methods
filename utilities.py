@@ -23,10 +23,16 @@ def get_k(n):
     else:
         return (n-1)//2
 
+def get_display_size(n):
+    return int(np.ceil(np.log10(n**2)))+1
+
+def get_display_format_string(n):
+    return "{:"+str(get_display_size(n))+"d}"
+
 def set_better_np_printoptions(n):
-    display_size = str(int(np.ceil(np.log10(n**2)))+1)
-    display_string = "{:"+display_size+"d}"
-    np.set_printoptions(formatter={"int": lambda x: display_string.format(x)})
+    display_size = get_display_size(n)
+    display_format_string = get_display_format_string(n)
+    np.set_printoptions(formatter={"int": lambda x: display_format_string.format(x)})
 
 def verify_magic_square(magic_s, print_message=True, print_verbose=False):
     n = magic_s.shape[0]
