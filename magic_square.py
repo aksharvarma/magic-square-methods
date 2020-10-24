@@ -84,7 +84,7 @@ class MagicSquare:
         '''
         n = self.n
         U.assert_indivisibility(n, 2)
-        magic_s = np.zeros((n, n), dtype=int)
+        magic_s = np.full((n, n), U.EMPTY_CELL, dtype=int)
         # Start from 1
         current_num = 1
         # First cell to fill is the middle one on the top row.
@@ -93,7 +93,7 @@ class MagicSquare:
             magic_s[i, j] = current_num
             # Move up and right
             new_i, new_j = (i-1)%n, (j+1)%n
-            if magic_s[new_i, new_j] != 0:
+            if magic_s[new_i, new_j] != U.EMPTY_CELL:
                 # If that is already filled, drop down instead.
                 new_i, new_j = i+1, j
             i, j = new_i, new_j
@@ -200,7 +200,7 @@ class MagicSquare:
                 magic_s[2*i+1, 2*j] = block[2]
                 magic_s[2*i, 2*j+1] = block[3]
 
-        self.magic_s = np.zeros((n, n), dtype=np.int)
+        self.magic_s = np.full((n, n), U.EMPTY_CELL, dtype=np.int)
         k = U.get_k(n)
         LUX = make_LUX_square(k)
 
@@ -217,7 +217,7 @@ class MagicSquare:
             # magic_s[i, j] = current_num
             # Move up and right
             new_i, new_j = (i-1) % LUX_size, (j+1) % LUX_size
-            if self.magic_s[2*new_i, 2*new_j] != 0:
+            if self.magic_s[2*new_i, 2*new_j] != U.EMPTY_CELL:
                 # If that is already filled, drop down instead.
                 new_i, new_j = i+1, j
             i, j = new_i, new_j

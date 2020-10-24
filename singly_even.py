@@ -53,7 +53,7 @@ def construct_singly_even_magic_square(n, print_LUX=True):
     '''
     U.assert_divisibility(n, 2)
     U.assert_indivisibility(n, 4)
-    magic_s = np.zeros((n, n), dtype=np.int)
+    magic_s = np.full((n, n), U.EMPTY_CELL, dtype=np.int)
     k = U.get_k(n)
     LUX = make_LUX_square(k)
     print("The LUX square constructed is as follows:\n", LUX, "\n")
@@ -67,7 +67,7 @@ def construct_singly_even_magic_square(n, print_LUX=True):
         # magic_s[i, j] = current_num
         # Move up and right
         new_i, new_j = (i-1) % LUX_size, (j+1) % LUX_size
-        if magic_s[2*new_i, 2*new_j] != 0:
+        if magic_s[2*new_i, 2*new_j] != U.EMPTY_CELL:
             # If that is already filled, drop down instead.
             new_i, new_j = i+1, j
         i, j = new_i, new_j

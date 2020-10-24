@@ -3,6 +3,8 @@ from itertools import product
 import curses
 from functools import partial
 
+EMPTY_CELL = -1
+
 def is_divisible(n, d):
     return n%d == 0
 
@@ -32,7 +34,7 @@ def get_display_format_string(n):
     return "{:"+str(get_display_size(n))+"d}"
 
 def np_int_formatter(n, x):
-    if x == 0:
+    if x == EMPTY_CELL:
         return " "*(get_display_size(n)-1)+"_"
     else:
         return get_display_format_string(n).format(x)

@@ -15,7 +15,7 @@ def construct_odd_magic_square(n, w=None, base_yx=None, delay=500):
     Reference: https://en.wikipedia.org/wiki/Siamese_method
     '''
     U.assert_indivisibility(n, 2)
-    magic_s = np.zeros((n, n), dtype=int)
+    magic_s = np.full((n, n), U.EMPTY_CELL, dtype=int)
     if w is not None:           # If using curses for displaying updates
         w.addstr(*base_yx, "{}".format(magic_s))
         w.refresh()
@@ -30,9 +30,9 @@ def construct_odd_magic_square(n, w=None, base_yx=None, delay=500):
             CU.print_cell(w, magic_s, i, j, base_yx=base_yx)
         # Move up and right
         new_i, new_j = (i-1)%n, (j+1)%n
-        if magic_s[new_i, new_j] != 0:
+        if magic_s[new_i, new_j] != U.EMPTY_CELL:
             # If that is already filled, drop down instead.
-            new_i, new_j = i+1, j
+            new_i, new_j = (i+1)%n, j%n
         i, j = new_i, new_j
         current_num +=1         # Will now fill in the next number
 
