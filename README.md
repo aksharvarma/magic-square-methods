@@ -23,3 +23,9 @@ This code should work with Python 3+. The primary libraries used are `numpy`, `i
 Each type of method is implemented in its own file. You can simply change the value of _n_ in the code and get a magic square of size _n x n_. If you want a self-contained function that will do everything for you, then there is the `MagicSquare` class in the `magic_square.py` file which you can use. A short example code to use that is available in `run_magic_square.py` which illustrates the main functionality.
 
 There is also a `utilities.py` file which contains various functions that are used in each of the methods, including the code that verifies that the squares constructed are indeed magic squares.
+
+## Curses
+
+Currently, the `odd.py` file contains some code that allows a crude step-by-step visualization of the method for Siamese method used for odd _n_. This utilizes some helper functions inside `curses_utilities.py`. To run the code in this manner simply use `python odd.py n use_curses` substituting the odd number _n_ that you wish to see the visualization for.
+
+The code is currently slightly hacky, but there are plans to clean it up, integrate it into the modular class code in `magic_square.py` and expand out the functionality.
